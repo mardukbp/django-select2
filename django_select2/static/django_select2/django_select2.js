@@ -28,7 +28,13 @@
           if (dependentFields) {
             dependentFields = dependentFields.trim().split(/\s+/)
             $.each(dependentFields, function (i, dependentField) {
-              result[dependentField] = $('[name=' + dependentField + ']', $element.closest('form')).val()
+              var formValue = $('[name=' + dependentField + ']', $element.closest('form')).val();
+              // This is for inlines, I checked this for a specific case
+              if (formValue === null || formValue === undefined) {
+                  var newFieldName = $element[0].name.split('-', 2).join('-') + '-' + dependentField;
+                  formValue = $('[name=' + newFieldName + ']', $element.closest('.form-row')).val();
+              }
+              result[dependentField] = formValue;
             })
           }
 
