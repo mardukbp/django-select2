@@ -73,8 +73,14 @@
     return this
   }
 
+  function applySelect2() {
+    $('.form-row').not('.empty-form').last().find('span.select2').remove()
+    $('.form-row').not('.empty-form').last().find('.django-select2').djangoSelect2()
+  }
+
   $(function () {
     $('.django-select2').djangoSelect2()
+    $(document).on('formset:added', applySelect2);
   })
 
   return $.fn.djangoSelect2
