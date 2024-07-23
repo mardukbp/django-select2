@@ -79,7 +79,7 @@
   }
 
   $(function () {
-    $('.django-select2').djangoSelect2()
+    $('.django-select2').not('[id*="__prefix__"]').djangoSelect2()
     $(document).on('formset:added', applySelect2);
   })
 
