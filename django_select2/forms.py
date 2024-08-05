@@ -155,7 +155,7 @@ class Select2Mixin:
             i18n_file = [f"{settings.SELECT2_I18N_PATH}/{self.i18n_name}.js"]
 
         return forms.Media(
-            js=select2_js + i18n_file + ["django_select2/django_select2.js"],
+            js=select2_js + i18n_file + ["admin/js/jquery.init.js"] + ["django_select2/django_select2.js"],
             css={"screen": select2_css + ["django_select2/django_select2.css"]},
         )
 
