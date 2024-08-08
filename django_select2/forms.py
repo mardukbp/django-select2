@@ -155,9 +155,7 @@ class Select2Mixin:
             i18n_file = [f"{settings.SELECT2_I18N_PATH}/{self.i18n_name}.js"]
 
         return forms.Media(
-            js=select2_js
-            + i18n_file
-            + ["admin/js/jquery.init.js", "django_select2/django_select2.js"],
+            js=select2_js + i18n_file + ["django_select2/django_select2.js"],
             css={"screen": select2_css + ["django_select2/django_select2.css"]},
         )
 
@@ -171,8 +169,12 @@ class Select2AdminMixin:
     def media(self):
         css = {**AutocompleteMixin(None, None).media._css}
         css["screen"].append("django_select2/django_select2.css")
+        js = [*Select2Mixin().media._js]
+        js.insert(
+            js.index("django_select2/django_select2.js"), "admin/js/jquery.init.js"
+        )
         return forms.Media(
-            js=Select2Mixin().media._js,
+            js=js,
             css=css,
         )
 
