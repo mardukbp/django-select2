@@ -77,7 +77,7 @@
 
       // Because select2 was already instantiated on the empty form, we need to remove it, destroy the instance,
       // and re-instantiate it.
-      jqRow.find('.select2-container').remove()
+      jqRow.find('.django-select2').parent().find('.select2-container').remove()
       jqRow.find('.django-select2').djangoSelect2('destroy');
       jqRow.find('.django-select2').djangoSelect2()
     }
