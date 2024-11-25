@@ -68,7 +68,7 @@
   }
 
   $(function () {
-    $('.django-select2').not('[name*=__prefix__]').djangoAdminSelect2()
+    $('.django-select2').not('[name*=__prefix__]').djangoSelect2()
 
     document.addEventListener('formset:added', (event) => {
         $(event.target).find('.django-select2').djangoSelect2()
