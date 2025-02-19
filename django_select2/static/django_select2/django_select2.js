@@ -26,9 +26,16 @@
 
           let dependentFields = $element.data('select2-dependent-fields')
           if (dependentFields) {
+            const find_element = function(selector) {
+              const result = $(selector, $element.closest(':has(' + selector + ')'))
+              if (result.length > 0) return result
+              else return null
+            }
             dependentFields = dependentFields.trim().split(/\s+/)
             $.each(dependentFields, function (i, dependentField) {
-              result[dependentField] = $('[name=' + dependentField + ']', $element.closest('form')).val()
+              const name_is = '[name=' + dependentField + ']'
+              const name_ends_with = '[name$=' + dependentField + ']'
+              result[dependentField] = (find_element(name_is) || find_element(name_ends_with)).val()
             })
           }
 
